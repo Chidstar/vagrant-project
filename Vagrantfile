@@ -21,6 +21,7 @@ Vagrant.configure("2") do |config|
 	install_packages(guest, guest_vm)
 	run_scripts(guest, guest_vm)
 	set_forward_ports(guest, guest_vm)
+	set_synced_folders(guest, guest_vm)
     end
   end
 end
@@ -60,6 +61,14 @@ end
 
 def set_forward_ports(guest, guest_vm)
 	guest_vm.vm.network "forwarded_port", guest: guest['guest_port'], host: guest['host_port']
+end
+
+def set_synced_folders(guest, guest_vm)
+	unless guest['synced_folders'].nil?
+		guest['synced_folders'].each do |synced_folder|
+			guest_vm.vm.synced_folder synced_folder['host'], synced_folder['guest']
+		end
+	end
 end
 
   #config.vm.define "jenkins" do |jenkins|

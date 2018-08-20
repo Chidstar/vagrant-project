@@ -11,6 +11,9 @@
   - nano
   scripts:
   - python_server
+  synced_folders:
+  - host: /Users/Admin/Desktop/Share
+    guest: /home/jenkins/synced 
  
 - name: server
   box: centos/7
@@ -24,4 +27,7 @@
   - nano
   scripts:
   - python_server 
-... 
+  synced_folders:
+  - host: /Users/Admin/Desktop/Share
+    guest: /home/jenkins/synced
+...
